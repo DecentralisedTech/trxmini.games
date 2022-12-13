@@ -1,15 +1,15 @@
 <script>
-    //@ts-nocheck
-    import Profile from '$lib/components/_ui/profile/Profile.svelte'
-    import { fetchedProfile } from '$lib/state/state'
-  
-    /** @type {import('./$types').PageData} */
-    console.log($fetchedProfile)
-    
-    export let data;
-    let profile = data;
-   
+	//@ts-nocheck
+	import Profile from '$lib/components/_ui/profile/Profile.svelte';
+	import { fetchedProfile } from '$lib/state/state';
+
+	/** @type {import('./$types').PageData} */
+	console.log($fetchedProfile);
+	export let data;
+
+	let profile = data;
 </script>
+
 <!--   
   <h1>{profile.address}</h1>
   <div>{@html profile.username}</div>
@@ -18,4 +18,4 @@
   <div>{@html profile.is_beta}</div>
   <div>{profile.games_won}</div> -->
 
-  <Profile></Profile>
+<Profile />
