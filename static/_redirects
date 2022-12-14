@@ -1,2 +1,5 @@
-/api/* http://170.187.182.220:5001/:splat 200
-/*    /index.html   200
+/api/a/*    http://170.187.182.220:5001/:splat  200
+/api/b/*    http://172.105.106.183:5020/:splat  200
+/api/ws/*   http://172.105.106.183:3001/:splat  200
+/api/tip/*  http://172.105.106.183:4903/:splat  200
+/*          /index.html                         200

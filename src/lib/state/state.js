@@ -2,6 +2,7 @@
 //  / // / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / ? ?
 //  / // / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / ? ?
 
+import { dev } from '$app/environment';
 import { writable } from 'svelte/store';
 
 export const connectedAddress = writable();
@@ -33,21 +34,22 @@ export const medalAlert = writable(false);
 export const creatingGame = writable();
 
 // POSTGRES ENDPOINTS
-export const url0 = '/api/address';
-export const url1 = '/api/username';
-export const url2 = '/api/getaddr?username=';
-export const getXp = '/api/getxp?user='; // May not need this.
-export const notificationsUrl = '/api/getnotifications';
-export const getProfileURL = '/api/getprofile?user=';
+const POSTGRESS_BASE_URL = dev ? 'http://170.187.182.220:5001' : '/api/a';
+export const url0 = `${POSTGRESS_BASE_URL}/address`;
+export const url1 = `${POSTGRESS_BASE_URL}/username`;
+export const url2 = `${POSTGRESS_BASE_URL}/getaddr?username=`;
+export const getXp = `${POSTGRESS_BASE_URL}/getxp?user=`; // May not need this.
+export const notificationsUrl = `${POSTGRESS_BASE_URL}/getnotifications`;
+export const getProfileURL = `${POSTGRESS_BASE_URL}/getprofile?user=`;
+
 // REDIS ENDPOINTS
+const REDIS_BASE_URL = dev ? 'http://172.105.106.183:5020' : '/api/b';
+export const makeBallRoom = `${REDIS_BASE_URL}/makeballroom?user=`;
+export const getBallRoomsUrl = `${REDIS_BASE_URL}/getballrooms`;
+export const urlRooms = `${REDIS_BASE_URL}/rooms`;
+export const urlEndedRooms = `${REDIS_BASE_URL}/endedrooms`;
 
-export const makeBallRoom = 'http://172.105.106.183:5020/makeballroom?user=';
-export const getBallRoomsUrl = 'http://172.105.106.183:5020/getballrooms';
-
-export const urlRooms = 'http://172.105.106.183:5020/rooms';
-export const urlEndedRooms = 'http://172.105.106.183:5020/endedrooms';
-
-export const tipSocket = 'http://172.105.106.183:4903/';
+export const tipSocket = dev ? 'http://172.106.183:4903' : '/api/tip';
 
 // chess contract, aswell as endpoint that Listens for contract events via trongrid.io API, such as the index which is a nessescary parameter to invoke the relevant struct.
 export const tipContract = 'TBPL4jVJMwnMLUjmX9GDTgXcC8y3T5zVgD';
@@ -56,10 +58,10 @@ export const _chessContract = 'TQyY41mqbHVWWHWt5Zq1pPL5rYd7HgM2kE';
 
 export const chessEventListener = `https://api.shasta.trongrid.io/v1/contracts/${chessContract}/events`;
 
-export const eventAPI = 'http://172.105.106.183:5020/api';
+export const eventAPI = `${REDIS_BASE_URL}/api`;
 
 // Chess socket.io endpoint
-export const chessWs = 'http://172.105.106.183:3001';
+export const chessWs = dev ? 'http://172.105.106.183:3001' : '/api/chess_ws';
 
 export const currentState = writable(''); // Saves current FEN state of chess game.
 export const wagerTx = writable();
